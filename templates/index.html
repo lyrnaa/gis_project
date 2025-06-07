@@ -13,15 +13,14 @@
         <input type="submit" value="Sprawdź">
     </form>
     {% if result %}
-        <h2>Wynik:</h2>
-        <p>{{ result }}</p>
-
-        {% if result.startswith("✅") %}
-            <h3>Wizualizacja grafu:</h3>
+        {% if '✅' in result or '❌' in result %}
+            <h2>Wynik dla grafu:</h2>
             <pre>{{ edges_input }}</pre>
-            <h3>Wizualizacja drzewa:</h3>
-            <img src="{{ url_for('static', filename='tree.png') }}" alt="Drzewo binarne">
-        {% endif %}
+            <p>{{ result }}</p>
+        {% else %}
+        <p style="color: #856404;">{{ result }}</p>
     {% endif %}
+{% endif %}
+
 </body>
 </html>
