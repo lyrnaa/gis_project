@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Sprawdzanie drzewa binarnego</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+    <h1>Sprawdź, czy graf jest drzewem binarnym</h1>
+    <form method="post">
+        <label>Podaj krawędzie w formacie: [(1,2), (1,3), (2,4)]</label><br><br>
+        <input type="text" name="edges" size="50" required value="{{ edges_input or '' }}">
+        <br><br>
+        <input type="submit" value="Sprawdź">
+    </form>
+    {% if result %}
+        <h2>Wynik:</h2>
+        <p>{{ result }}</p>
+
+        {% if result.startswith("✅") %}
+            <h3>Wizualizacja grafu:</h3>
+            <pre>{{ edges_input }}</pre>
+            <h3>Wizualizacja drzewa:</h3>
+            <img src="{{ url_for('static', filename='tree.png') }}" alt="Drzewo binarne">
+        {% endif %}
+    {% endif %}
+</body>
+</html>
